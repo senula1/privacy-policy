@@ -9,214 +9,262 @@
 
 <style>
 :root{
-    --bg1:#0f2027;
-    --bg2:#203a43;
-    --bg3:#2c5364;
-    --card:rgba(255,255,255,0.08);
-    --text:#fff;
-    --neon:#00ffd5;
+  --neon:#00ffd5;
+  --blue:#00b3ff;
+  --glass:rgba(255,255,255,0.08);
+  --text:#fff;
 }
 
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:'Poppins',sans-serif;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,sans-serif;}
 
 body{
-    min-height:100vh;
-    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    padding:20px;
-    overflow:hidden;
+  min-height:100vh;
+  background:radial-gradient(circle at top,#0f2027,#000);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-.bg-animation{
-    position:fixed;
-    inset:0;
-    background:radial-gradient(circle at 20% 20%,rgba(0,255,213,0.15),transparent 40%),
-               radial-gradient(circle at 80% 80%,rgba(0,179,255,0.15),transparent 40%);
-    animation: floatBg 10s infinite alternate;
-}
-
-@keyframes floatBg{
-    from{transform:scale(1);}
-    to{transform:scale(1.05);}
-}
-
-.loader{
-    position:fixed;
-    inset:0;
-    background:#000;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    z-index:9999;
-}
-
-.spinner{
-    width:60px;
-    height:60px;
-    border:6px solid rgba(255,255,255,0.1);
-    border-top:6px solid var(--neon);
-    border-radius:50%;
-    animation: spin 1s linear infinite;
-}
-
-@keyframes spin{
-    0%{transform:rotate(0deg);}
-    100%{transform:rotate(360deg);}
+#particles{
+  position:fixed;
+  inset:0;
+  z-index:0;
 }
 
 .container{
-    position:relative;
-    max-width:850px;
-    width:100%;
-    background:var(--card);
-    backdrop-filter:blur(15px);
-    border-radius:25px;
-    padding:40px;
-    color:var(--text);
-    box-shadow:0 20px 50px rgba(0,0,0,0.5);
-    animation:fadeIn 1s ease;
-}
-
-@keyframes fadeIn{
-    from{opacity:0; transform:translateY(30px);}
-    to{opacity:1; transform:translateY(0);}
-}
-
-.toggle{
-    position:absolute;
-    top:15px;
-    right:15px;
-    cursor:pointer;
-    padding:6px 14px;
-    border-radius:50px;
-    background:linear-gradient(135deg,#00ffd5,#00b3ff);
-    color:#000;
-    font-weight:600;
-    font-size:12px;
+  position:relative;
+  max-width:1000px;
+  margin:80px auto;
+  padding:45px;
+  border-radius:30px;
+  background:var(--glass);
+  backdrop-filter:blur(18px);
+  box-shadow:0 0 70px rgba(0,255,213,.25);
+  z-index:1;
 }
 
 h1{
-    text-align:center;
-    font-weight:700;
-    text-shadow:0 0 15px var(--neon);
+  text-align:center;
+  font-size:44px;
+  background:linear-gradient(90deg,var(--neon),var(--blue));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:glow 3s infinite alternate;
 }
 
-.subtitle{
-    text-align:center;
-    font-size:14px;
-    opacity:0.8;
-    margin-bottom:25px;
+@keyframes glow{
+  from{text-shadow:0 0 12px var(--neon);}
+  to{text-shadow:0 0 30px var(--blue);}
 }
+
+.subtitle{text-align:center;opacity:.85;margin-bottom:45px;}
 
 .card{
-    background:rgba(255,255,255,0.06);
-    border-radius:18px;
-    padding:20px;
-    margin-bottom:15px;
-    transition:0.4s;
-    border:1px solid rgba(255,255,255,0.08);
+  background:rgba(255,255,255,.06);
+  border-radius:20px;
+  padding:28px;
+  margin-bottom:22px;
+  border:1px solid rgba(255,255,255,.1);
+  transform:translateY(40px);
+  opacity:0;
+  transition:0.6s;
 }
 
+.card.show{transform:none;opacity:1;}
+
 .card:hover{
-    transform:translateY(-5px) scale(1.01);
-    box-shadow:0 0 25px rgba(0,255,213,0.3);
+  box-shadow:0 0 35px rgba(0,255,213,.35);
+  transform:scale(1.015);
 }
 
 h2{
-    font-size:18px;
-    margin-bottom:10px;
-    color:var(--neon);
+  color:var(--neon);
+  margin-bottom:10px;
 }
 
 ul{margin-left:20px;}
 li{margin-bottom:6px;}
 
-.footer{
-    text-align:center;
-    margin-top:20px;
-    font-size:13px;
-    opacity:0.7;
+.badges{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
 }
+
+.badge{
+  padding:6px 14px;
+  border-radius:50px;
+  background:linear-gradient(90deg,var(--neon),var(--blue));
+  color:#000;
+  font-size:12px;
+  font-weight:600;
+}
+
+.footer{
+  text-align:center;
+  margin-top:40px;
+  opacity:.6;
+}
+
+.loader{
+  position:fixed;
+  inset:0;
+  background:#000;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.spinner{
+  width:70px;
+  height:70px;
+  border:6px solid rgba(255,255,255,.1);
+  border-top:6px solid var(--neon);
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+}
+
+@keyframes spin{to{transform:rotate(360deg);}}
 </style>
 </head>
 
 <body>
 
+<div id="particles"></div>
+
 <div class="loader" id="loader">
-    <div class="spinner"></div>
+  <div class="spinner"></div>
 </div>
 
-<div class="bg-animation"></div>
-
 <div class="container">
-    <div class="toggle" onclick="toggleMode()">🌗 Mode</div>
+  <h1>SeriesX Bot</h1>
+  <div class="subtitle">Ultra Max Pro Privacy Policy</div>
 
-    <h1>SeriesX Bot</h1>
-    <div class="subtitle">Privacy Policy</div>
+  <div class="card"><h2>📌 Overview</h2>
+    <p>SeriesX Bot respects your privacy and ensures a secure, transparent and premium experience.</p>
+  </div>
 
-    <div class="card">
-        <h2>📌 Overview</h2>
-        <p>SeriesX Bot respects your privacy and is committed to protecting your data.</p>
+  <div class="card"><h2>📊 Data We Collect</h2>
+    <ul>
+      <li>Telegram User ID</li>
+      <li>Chat ID (for group support)</li>
+      <li>Bot interaction logs</li>
+      <li>Basic usage statistics</li>
+    </ul>
+  </div>
+
+  <div class="card"><h2>🚫 What We Do NOT Do</h2>
+    <ul>
+      <li>No private messages stored</li>
+      <li>No chat monitoring</li>
+      <li>No selling of data</li>
+      <li>No sharing with third parties</li>
+    </ul>
+  </div>
+
+  <div class="card"><h2>🛡 Data Security</h2>
+    <p>All stored data is encrypted and protected with enterprise-grade security practices.</p>
+  </div>
+
+  <div class="card"><h2>🗃 Data Retention</h2>
+    <p>We retain minimal data for functional purposes only. Data is periodically cleaned.</p>
+  </div>
+
+  <div class="card"><h2>🍪 Cookies & Tracking</h2>
+    <p>No cookies, trackers, or third-party analytics are used.</p>
+  </div>
+
+  <div class="card"><h2>⚖ Legal Compliance</h2>
+    <p>SeriesX Bot follows GDPR principles and international data protection laws.</p>
+    <div class="badges">
+      <span class="badge">GDPR Ready</span>
+      <span class="badge">Privacy First</span>
+      <span class="badge">Secure Storage</span>
+      <span class="badge">No Tracking</span>
     </div>
+  </div>
 
-    <div class="card">
-        <h2>📊 Data We Collect</h2>
-        <ul>
-            <li>Telegram User ID</li>
-            <li>Chat ID (for group support)</li>
-            <li>Basic usage statistics</li>
-        </ul>
-    </div>
+  <div class="card"><h2>🧑‍⚖ User Rights</h2>
+    <ul>
+      <li>Request your stored data</li>
+      <li>Request data deletion</li>
+      <li>Opt-out of notifications</li>
+    </ul>
+  </div>
 
-    <div class="card">
-        <h2>🚫 What We Do NOT Do</h2>
-        <ul>
-            <li>We do not store private messages</li>
-            <li>We do not read personal chats</li>
-            <li>We do not share data with third parties</li>
-        </ul>
-    </div>
+  <div class="card"><h2>📜 Transparency Report</h2>
+    <p>We do not cooperate with unauthorized data requests or surveillance systems.</p>
+  </div>
 
-    <div class="card">
-        <h2>🛡 Data Usage</h2>
-        <p>All collected data is securely stored and used only to improve bot performance.</p>
-    </div>
+  <div class="card"><h2>🔄 Policy Updates</h2>
+    <p>This privacy policy may be updated periodically. Changes will be reflected here.</p>
+  </div>
 
-    <div class="card">
-        <h2>📩 Contact</h2>
-        <p>For privacy concerns: <b>@Itz_Me_Senula</b></p>
-    </div>
+  <div class="card"><h2>❓ FAQ</h2>
+    <p><b>Q:</b> Does the bot read my chats?<br><b>A:</b> No. Absolutely not.</p>
+    <p><b>Q:</b> Is my data safe?<br><b>A:</b> Yes, encrypted & protected.</p>
+  </div>
 
-    <div class="footer">
-        © 2026 SeriesX Bot • Ultra Premium UI
-    </div>
+  <div class="card"><h2>📩 Support</h2>
+    <p>For privacy concerns contact: <b>@Itz_Me_Senula</b></p>
+  </div>
+
+  <div class="footer">
+    © 2026 SeriesX Bot • Enterprise Privacy System
+  </div>
 </div>
 
 <script>
-window.onload = ()=>{
-    setTimeout(()=>document.getElementById("loader").style.display="none",600);
+/* Loader */
+window.onload=()=>{
+  setTimeout(()=>document.getElementById("loader").style.display="none",600);
 }
 
-let dark=true;
-function toggleMode(){
-    if(dark){
-        document.documentElement.style.setProperty('--bg1','#f5f7fa');
-        document.documentElement.style.setProperty('--bg2','#c3cfe2');
-        document.documentElement.style.setProperty('--bg3','#eef2f3');
-        document.documentElement.style.setProperty('--card','rgba(0,0,0,0.05)');
-        document.documentElement.style.setProperty('--text','#000');
-        dark=false;
-    }else{
-        location.reload();
-    }
+/* Scroll reveal */
+const cards=document.querySelectorAll(".card");
+window.addEventListener("scroll",()=>{
+  const trigger=window.innerHeight*0.85;
+  cards.forEach(c=>{
+    if(c.getBoundingClientRect().top<trigger){c.classList.add("show");}
+  });
+});
+
+/* Particle background */
+const canvas=document.createElement("canvas");
+document.getElementById("particles").appendChild(canvas);
+const ctx=canvas.getContext("2d");
+let w,h,particles=[];
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
 }
+window.onresize=resize;resize();
+
+for(let i=0;i<90;i++){
+  particles.push({
+    x:Math.random()*w,
+    y:Math.random()*h,
+    r:Math.random()*2+1,
+    dx:(Math.random()-.5)*.5,
+    dy:(Math.random()-.5)*.5
+  });
+}
+
+function animate(){
+  ctx.clearRect(0,0,w,h);
+  particles.forEach(p=>{
+    ctx.beginPath();
+    ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+    ctx.fillStyle="rgba(0,255,213,.75)";
+    ctx.fill();
+    p.x+=p.dx; p.y+=p.dy;
+    if(p.x<0||p.x>w) p.dx*=-1;
+    if(p.y<0||p.y>h) p.dy*=-1;
+  });
+  requestAnimationFrame(animate);
+}
+animate();
 </script>
 
 </body>
