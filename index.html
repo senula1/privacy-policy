@@ -5,108 +5,158 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SeriesX Bot - Privacy Policy</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
 <style>
+:root{
+    --bg1:#0f2027;
+    --bg2:#203a43;
+    --bg3:#2c5364;
+    --card:rgba(255,255,255,0.08);
+    --text:#fff;
+    --neon:#00ffd5;
+}
+
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family: 'Poppins', sans-serif;
+    font-family:'Poppins',sans-serif;
 }
 
 body{
     min-height:100vh;
-    background: linear-gradient(135deg,#0f2027,#203a43,#2c5364);
+    background:linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));
     display:flex;
     justify-content:center;
     align-items:center;
     padding:20px;
+    overflow:hidden;
+}
+
+.bg-animation{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(circle at 20% 20%,rgba(0,255,213,0.15),transparent 40%),
+               radial-gradient(circle at 80% 80%,rgba(0,179,255,0.15),transparent 40%);
+    animation: floatBg 10s infinite alternate;
+}
+
+@keyframes floatBg{
+    from{transform:scale(1);}
+    to{transform:scale(1.05);}
+}
+
+.loader{
+    position:fixed;
+    inset:0;
+    background:#000;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.spinner{
+    width:60px;
+    height:60px;
+    border:6px solid rgba(255,255,255,0.1);
+    border-top:6px solid var(--neon);
+    border-radius:50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
 }
 
 .container{
-    max-width:800px;
+    position:relative;
+    max-width:850px;
     width:100%;
-    background: rgba(255,255,255,0.1);
-    backdrop-filter: blur(12px);
-    border-radius:20px;
+    background:var(--card);
+    backdrop-filter:blur(15px);
+    border-radius:25px;
     padding:40px;
-    color:#fff;
-    box-shadow:0 15px 40px rgba(0,0,0,0.4);
-    animation: fadeIn 1s ease-in-out;
+    color:var(--text);
+    box-shadow:0 20px 50px rgba(0,0,0,0.5);
+    animation:fadeIn 1s ease;
 }
 
 @keyframes fadeIn{
-    from{opacity:0; transform: translateY(20px);}
-    to{opacity:1; transform: translateY(0);}
+    from{opacity:0; transform:translateY(30px);}
+    to{opacity:1; transform:translateY(0);}
+}
+
+.toggle{
+    position:absolute;
+    top:15px;
+    right:15px;
+    cursor:pointer;
+    padding:6px 14px;
+    border-radius:50px;
+    background:linear-gradient(135deg,#00ffd5,#00b3ff);
+    color:#000;
+    font-weight:600;
+    font-size:12px;
 }
 
 h1{
     text-align:center;
     font-weight:700;
-    margin-bottom:10px;
+    text-shadow:0 0 15px var(--neon);
 }
 
 .subtitle{
     text-align:center;
     font-size:14px;
     opacity:0.8;
-    margin-bottom:30px;
+    margin-bottom:25px;
 }
 
 .card{
-    background: rgba(255,255,255,0.08);
-    border-radius:15px;
+    background:rgba(255,255,255,0.06);
+    border-radius:18px;
     padding:20px;
     margin-bottom:15px;
-    transition:0.3s;
+    transition:0.4s;
+    border:1px solid rgba(255,255,255,0.08);
 }
 
 .card:hover{
-    transform: scale(1.02);
-    background: rgba(255,255,255,0.12);
+    transform:translateY(-5px) scale(1.01);
+    box-shadow:0 0 25px rgba(0,255,213,0.3);
 }
 
 h2{
     font-size:18px;
     margin-bottom:10px;
-    color:#00ffd5;
+    color:var(--neon);
 }
 
-ul{
-    margin-left:20px;
-}
-
-li{
-    margin-bottom:6px;
-}
+ul{margin-left:20px;}
+li{margin-bottom:6px;}
 
 .footer{
-    margin-top:20px;
     text-align:center;
+    margin-top:20px;
     font-size:13px;
     opacity:0.7;
 }
-
-.badge{
-    display:inline-block;
-    padding:5px 12px;
-    border-radius:50px;
-    background: linear-gradient(135deg,#00ffd5,#00b3ff);
-    color:#000;
-    font-size:12px;
-    font-weight:600;
-    margin-bottom:15px;
-}
 </style>
-
 </head>
 
 <body>
 
+<div class="loader" id="loader">
+    <div class="spinner"></div>
+</div>
+
+<div class="bg-animation"></div>
+
 <div class="container">
-    <div class="badge">🔐 Privacy Protected</div>
+    <div class="toggle" onclick="toggleMode()">🌗 Mode</div>
 
     <h1>SeriesX Bot</h1>
     <div class="subtitle">Privacy Policy</div>
@@ -136,19 +186,38 @@ li{
 
     <div class="card">
         <h2>🛡 Data Usage</h2>
-        <p>All collected data is securely stored and used only to improve bot performance and user experience.</p>
+        <p>All collected data is securely stored and used only to improve bot performance.</p>
     </div>
 
     <div class="card">
         <h2>📩 Contact</h2>
-        <p>For privacy concerns, contact: <b>@YourUsername</b></p>
+        <p>For privacy concerns: <b>@Itz_Me_Senula</b></p>
     </div>
 
     <div class="footer">
-        © 2026 SeriesX Bot • All rights reserved
+        © 2026 SeriesX Bot • Ultra Premium UI
     </div>
-
 </div>
+
+<script>
+window.onload = ()=>{
+    setTimeout(()=>document.getElementById("loader").style.display="none",600);
+}
+
+let dark=true;
+function toggleMode(){
+    if(dark){
+        document.documentElement.style.setProperty('--bg1','#f5f7fa');
+        document.documentElement.style.setProperty('--bg2','#c3cfe2');
+        document.documentElement.style.setProperty('--bg3','#eef2f3');
+        document.documentElement.style.setProperty('--card','rgba(0,0,0,0.05)');
+        document.documentElement.style.setProperty('--text','#000');
+        dark=false;
+    }else{
+        location.reload();
+    }
+}
+</script>
 
 </body>
 </html>
